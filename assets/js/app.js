@@ -1,7 +1,25 @@
 var root = this;
 
-var dfLevel = 0;
-$(" [data-ref='df-lv']").html(dfLevel);
+function buildDeck(source) {
+    var pool =[];
+    for (i=0;i<source.length;i++) {
+        pool.push(source[i]);
+    }
+    var reps = pool.length;
+    var deck = [];
+    for (i=0; i<reps; i++) {
+        j = Math.ceil(Math.random()*pool.length)-1;
+        deck.push(pool[j]);
+        pool.splice(j, 1);
+    }
+    // logging
+    for (i=0;i<deck.length;i++) {
+        console.log((i+1)+". "+deck[i].name);
+    }
+
+    $("[data-ref='deck']").html(deck.length);
+    return deck;
+}
 
 function select(ref, context) {
     if (context != undefined) {
@@ -70,15 +88,29 @@ function drawCard(card) {
 }
 
 $("#draw").click(function() {
+    if (deck.length <= 0) {
+        init();
+        return;
+    }
     dfLevel++;
     $(" [data-ref='df-lv']").html(dfLevel);
-    card = cards[Math.floor(Math.random()*cards.length)];
-    drawCard(card);
+    drawCard(deck[0]);
+    deck.splice(0, 1);
+    $("[data-ref='deck']").html(deck.length);
 });
 
 $("#reset").click(function() {
-    dfLevel = 0;
-    $(" [data-ref='df-lv']").html(dfLevel);
+    init();
+});
+
+function init() {
     $("#card").hide();
     $("#card-2").hide();
-});
+    dfLevel = 0;
+    $(" [data-ref='df-lv']").html(dfLevel);
+    deck = buildDeck(cards);
+}
+
+// Initialize
+var dfLevel, deck;
+init();
