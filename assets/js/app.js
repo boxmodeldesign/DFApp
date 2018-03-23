@@ -103,6 +103,46 @@ $("#reset").click(function() {
     init();
 });
 
+$("[data-toggle='collapse']").click(function() {
+    var test = $(this).children(".arrow-toggle").html();
+    $(this).children(".arrow-toggle").html(
+        test == "▾" ? "▸" : "▾"
+    );
+});
+
+function cardList(cards) {
+    var output = "";
+    var sets = [];
+    cards.forEach(card => {
+        var match = false;
+        for (i=0;i<sets.length;i++) {
+            if (sets[i].name.indexOf(card.set) != -1) {
+                match = true;
+                sets[i].cards.push(card);
+                break;
+            }
+        };
+        if (!match) {
+            sets.push({name: card.set, cards: [card]});
+        }
+    });
+    sets.forEach(set => {
+        output += '<div class="custom-control mt-2"><strong>'+set.name+'</strong> ('+set.cards.length+')</div>';
+        set.cards.forEach(card => {
+            var badge;
+            if (card.type == "uq") {
+                badge = ' <span class="badge badge-pill badge-warning">UQ</span>';
+            } else if (card.type == "sp") {
+                badge = ' <span class="badge badge-pill badge-success">SP</span>';
+            } else {
+                badge = '';
+            }
+            output += '<div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="'+card.set+card.id+'"><label class="custom-control-label" for="'+card.set+card.id+'">'+card.id+'. '+card.name+badge+'</label></div>'
+        });
+    });
+    $("[data-ref='card-list']").html(output);
+}
+
 function init() {
     $("#card").hide();
     $("#card-2").hide();
@@ -114,3 +154,5 @@ function init() {
 // Initialize
 var dfLevel, deck;
 init();
+
+cardList(cards);
