@@ -35,25 +35,30 @@
                         <div class="row collapse" id="premade">
                             <div class="col">
                                 <h5>
-                                    <a data-ref="premade-complete">Complete</a> <span class="text-muted">All non-Special, non-Unique cards</span>
+                                    <div data-ref="premade-complete" class="btn btn-success btn-sm text-uppercase">Use</div> Complete <small class="text-muted">All non-Special, non-Unique cards</small>
                                 </h5>
-                                <div class="mb-3">
-                                    <div data-ref="premade-base" class="btn btn-primary">Base Deck</div> <span class="text-muted">The original 24 cards</span>
-                                </div>
-                                <div class="mb-3">
-                                    <div data-ref="premade-base" class="btn btn-primary">Dragonspear</div> <span class="text-muted">Dragonspear Castle mission deck</span>
-                                </div>
-                                <div class="mb-3">
-                                    <div data-ref="premade-base" class="btn btn-primary">Trollclaws</div> <span class="text-muted">Trollclaws mission deck</span>
-                                </div>
+                                <h5>
+                                    <div data-ref="premade-base" class="btn btn-success btn-sm text-uppercase">Use</div> Base Deck <small class="text-muted">The original 24 cards</small>
+                                </h5>
+                                <h5>
+                                    <div data-ref="premade-ds" class="btn btn-success btn-sm text-uppercase">Use</div> Dragonspear <small class="text-muted">Dragonspear Castle mission deck</small>
+                                </h5>
+                                <h5>
+                                    <div data-ref="premade-tc" class="btn btn-success btn-sm text-uppercase">Use</div> Trollclaws <small class="text-muted">Trollclaws mission deck</small>
+                                </h5>
                             </div>
                         </div>
                         <div class="row">
-                            <a data-toggle="collapse" href="#set" aria-expanded="false" aria-controls="set"><span class="arrow-toggle">&#9656;</span> Cards by Set</a>
+                            <h4><a data-toggle="collapse" href="#set" aria-expanded="false" aria-controls="set"><span class="arrow-toggle">&#9656;</span> Cards by Set</a></h4>
                         </div>
                         <div class="row collapse" id="set">
                             <div class="col">
                                 <div data-ref="card-list"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="btn btn-primary btn-lg" data-ref="build-deck">
+                                Build
                             </div>
                         </div>
                     </div>

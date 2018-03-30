@@ -143,6 +143,22 @@ function cardList(cards) {
     $("[data-ref='card-list']").html(output);
 }
 
+$("[data-ref='build-deck']").click(function() {
+    var decklist = [];
+    for (i=0;i<cards.length;i++) {
+        var id = cards[i].set+cards[i].id;
+        if ($("#"+id).prop("checked")) {
+            decklist.push(cards[i]);
+        }
+    }
+    if (decklist.length == 0) {
+        console.log("There are no cards in the deck!");
+    } else {
+        deck = buildDeck(decklist);
+        console.log("Deck built!");
+    }
+});
+
 function init() {
     $("#card").hide();
     $("#card-2").hide();
